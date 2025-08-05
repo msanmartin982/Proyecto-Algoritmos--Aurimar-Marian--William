@@ -81,6 +81,20 @@ Selecciona una opcion
             except ValueError:
                 print("Ingresa un numero")
 
-#Mostrar contenido de departamento
-    def mostrar_obras_departamento(self, department_id):
-        pass
+#    Mostrar contenido de departamento
+    def mostrar_obras_departamento(self,depart_id):
+        self.departamentos = obtener_id_departamento()
+        id_objetos= self.departamentos(depart_id)
+        if not obj_id:
+            print("No se encontraron obras")
+            return
+        print(f"Obras en el Departamento{depart_id}")
+
+        for obj_id in id_objetos:
+            obra=self.obtener_detalles_obras(obj_id)
+            if obra:
+                print(f"Id: {obra.id}, Titulo {obra.titulo}, Autor: {obra.autor}")
+            
+            else:
+                print("No se pudieron obtener las obras")
+
