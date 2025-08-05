@@ -1,10 +1,12 @@
-
+from db import *
 
 class Museo:
     def __init__(self):
         self.departamentos = []
 
     def start(self):
+        self.departamentos = cargar_departamentos()
+        print(self.departamentos)
 
         print('''   
         Bienvenido al Catálogo 
