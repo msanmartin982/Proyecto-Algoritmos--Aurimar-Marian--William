@@ -16,7 +16,7 @@ def cargar_departamentos():
 
 def obtener_id_departamento(id_departamento):
 
-        url= (f"https://collectionapi.metmuseum.org/public/collection/v1/bjects?departmentIds={id_departamento}")
+        url= (f"https://collectionapi.metmuseum.org/public/collection/v1/search?departmentId={id_departamento}&q=a")
         try:
                 response=requests.get(url)
                 response.raise_for_status()

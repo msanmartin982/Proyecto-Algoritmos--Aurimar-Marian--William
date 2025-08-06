@@ -47,6 +47,7 @@ Selecciona una opcion
                 pass
             elif opcion == "3":
                 print("Hasta luego!")
+                break
             else:
                 print(f'Opcion invalida, por favor ingresa una de las opciones disponibles')
                 break
@@ -74,13 +75,18 @@ Selecciona una opcion
         
         while True:
             try:
-                seleccion_id=int(input("Ingreesa el ID del departamento que deseas ver o ingresa '000' para salir"))
+                seleccion_id=int(input("Ingreesa el ID del departamento que deseas ver o ingresa '000' para salir: "))
                 if seleccion_id==000:
                     return
                 
-                if any(dep.depatmentId== seleccion_id for dep in self.departamentos):
-                    self.mostrar_obras_departamento(seleccion_id)
-                    break
+                departamento_encontrado=None
+                for dep in self.departamentos:
+                    if dep.id==seleccion_id:
+                        departamento_encontrado=dep
+                        break
+                
+                if departamento_encontrado:
+                    self.mostrar_obras_departamento(departamento_encontrado)
 
                 else:
                     print("ID invalido.")
@@ -89,19 +95,18 @@ Selecciona una opcion
                 print("Ingresa un numero")
 
 #    Mostrar contenido de departamento
-    def mostrar_obras_departamento(self,depart_id):
-        self.departamentos = obtener_id_departamento()
-        self.detalles_obras=obtener_detalles_obras()
-        id_objetos= self.departamentos(depart_id)
-        if not obj_id:
+    def mostrar_obras_departamento(self,depart_obj):
+        id_objetos=obtener_id_departamento(depart_obj.id)
+        if not id_objetos:
             print("No se encontraron obras")
             return
-        print(f"Obras en el Departamento{depart_id}")
 
-        for obj_id in id_objetos:
-            obra=self.detalles_obras(obj_id)
+        obras_para_mostrar=id_objetos[0:10]
+
+        for obj_id in obras_para_mostrar:
+            obra=buscar_objeto_por_id(obj_id)
             if obra:
-                print(f"Id: {obra.id}, Titulo {obra.titulo}, Autor: {obra.autor}")
+                obra.show()
             
             else:
                 print("No se pudieron obtener las obras")
