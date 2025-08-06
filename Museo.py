@@ -101,15 +101,36 @@ Selecciona una opcion:
             print("No se encontraron obras")
             return
 
-        obras_para_mostrar=id_objetos[0:10]
+#Proceso de control de cantidad de obras a mostrar por departamento, estableceremos grupos de 10 en 10
+        total_obras=len(id_objetos)
+        numero=0
+        cantidad=10
 
-        for obj_id in obras_para_mostrar:
-            obra=buscar_objeto_por_id(obj_id)
-            if obra:
-                obra.show()
+        while True:
+            if numero >= total_obras:
+                print("No hay mas obras que mostrar para este departamento")
+                break
+            obras_para_mostrar=id_objetos[numero:numero+cantidad]
+        
+            for obj_id in obras_para_mostrar:
+                obra=buscar_objeto_por_id(obj_id)
+                if obra:
+                    obra.show()
             
+                else:
+                    print("No se pudieron obtener las obras")
+        
+            numero += cantidad
+
+            if numero< total_obras:
+                respuesta= input("Si deseas ver mas obras ingresa 'si', de lo contrario 'no': ").lower()
+                if respuesta != 'si':
+                    break
             else:
-                print("No se pudieron obtener las obras")
+                print("Todas las obras de este departamento han sido mostradas")
+                break
+
+
                 
     #Muestra obras segun su nacionalidad
     def mostrar_obras_nacionalidad(self):
