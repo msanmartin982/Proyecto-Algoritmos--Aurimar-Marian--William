@@ -25,7 +25,7 @@ def obtener_id_departamento(id_departamento):
                 print("Error", response.status_code)   
                 return[]
 
-
+#Obtiene detalles de las obras
 def obtener_detalles_obras(obj_id):
         url= f"https://collectionapi.metmuseum.org/public/collection/v1/objects/{obj_id}"
         response=requests.get(url)
