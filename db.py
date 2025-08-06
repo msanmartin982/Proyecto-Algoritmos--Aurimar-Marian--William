@@ -29,11 +29,12 @@ def obtener_id_departamento(id_departamento):
 def obtener_detalles_obras(obj_id):
         url= f"https://collectionapi.metmuseum.org/public/collection/v1/objects/{obj_id}"
         response=requests.get(url)
-        response.raise_for_status()
-        data=response.json()
-
-        obras=Detalles(id=data.get("objectID"),titulo=data.get("title"),autor=data.get("artistDisplayName"),nacionalidad=data.get("artistNationality"),nacimiento=data.get("artistBeginDate"),muerte=data.get("artistEndDate"),tipo=data.get("classification"),creacion=data.get("objectDate"),imagen=data.get("primaryImage"))
-        return obras
+        if response.status_code==200:
+                data=response.json()
+                obras=Detalles(id=data.get("objectID"),titulo=data.get("title"),autor=data.get("artistDisplayName"),nacionalidad=data.get("artistNationality"),nacimiento=data.get("artistBeginDate"),muerte=data.get("artistEndDate"),tipo=data.get("classification"),creacion=data.get("objectDate"),imagen=data.get("primaryImage"))
+                return obras
+        else:
+                print("Error", response.status_code)
 
 # Carga las nacionalidades en el sistema
 def cargar_nacionalidades():
