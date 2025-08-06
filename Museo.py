@@ -84,6 +84,7 @@ Selecciona una opcion
 #    Mostrar contenido de departamento
     def mostrar_obras_departamento(self,depart_id):
         self.departamentos = obtener_id_departamento()
+        self.detalles_obras=obtener_detalles_obras()
         id_objetos= self.departamentos(depart_id)
         if not obj_id:
             print("No se encontraron obras")
@@ -91,7 +92,7 @@ Selecciona una opcion
         print(f"Obras en el Departamento{depart_id}")
 
         for obj_id in id_objetos:
-            obra=self.obtener_detalles_obras(obj_id)
+            obra=self.detalles_obras(obj_id)
             if obra:
                 print(f"Id: {obra.id}, Titulo {obra.titulo}, Autor: {obra.autor}")
             
