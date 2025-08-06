@@ -39,7 +39,7 @@ Selecciona una opcion:
                         self.mostrar_obras_nacionalidad()
                 
                     elif menu == "3":
-                        pass
+                        self.mostrar_obras_autor()
                 
                     elif menu == "4":
                         break
@@ -133,3 +133,12 @@ Selecciona una opcion:
                 else:
                     print("Ingrese una nacionalidad válida.")
             break
+
+    #Muestra obras segun el nombre del autor
+    def mostrar_obras_autor(self):
+        autor_a_buscar = input("Ingrese el nombre del autor de las obras que desea ver: ")
+        obras = buscar_obra_nombre_artista(autor_a_buscar)
+        if obras is not None:
+                for obra in obras:
+                    self.guardar_obra(obra)
+

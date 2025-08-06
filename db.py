@@ -50,6 +50,8 @@ def buscar_objeto_por_id(id_objeto):
         url = f"https://collectionapi.metmuseum.org/public/collection/v1/objects/{id_objeto}"
         response = requests.get(url)
         data = response.json()
+        if 'message' in data:
+                return
         return Obra(data['objectID'], data['title'], data['artistDisplayName'])
 
 # Busca obra segun su nacionalidad
@@ -71,7 +73,8 @@ def buscar_obra_nacionalidad(nacionalidad):
                                 for id_obra in id_obras[limite_inf:limite_sup]:
                                         obras_encontradas.append(buscar_objeto_por_id(id_obra))
                                 for obra in obras_encontradas:
-                                        obra.show()
+                                        if obra is not None:
+                                                obra.show()
                                 continuar = valid_continue("Hay mas obras disponibles, ¿desea seguir viendo? (y/n):")
                                 if continuar=='y':
                                         limite_sup += 10
@@ -82,8 +85,46 @@ def buscar_obra_nacionalidad(nacionalidad):
                         for id_obra in id_obras:
                                 obras_encontradas.append(buscar_objeto_por_id(id_obra))
                         for obra in obras_encontradas:
-                                obra.show()
+                                if obra is not None:
+                                        obra.show()
         else:
                 print("No existen obras para la nacionalidad ingresada.")
+                return None
+        return obras_encontradas
+
+# Busca obra segun su nacionalidad
+def buscar_obra_nombre_artista(nombre_artista):
+        url = f"https://collectionapi.metmuseum.org/public/collection/v1/search?artistOrCulture=true&q={nombre_artista}"
+        response = requests.get(url)
+        data = response.json()
+        id_obras = data['objectIDs']
+
+        obras_encontradas = []
+        if id_obras is not None:
+                #Intento evitar que la API deje de responder haciendo requests de 10 en 10, igual si se hace muy rapido puede colapsar.
+                if len(id_obras) > 10:
+                        limite_sup = 10
+                        limite_inf = limite_sup - 10
+                        while True:
+                                print(f"OBRAS DEL ARTISTA: {nombre_artista}")
+                                for id_obra in id_obras[limite_inf:limite_sup]:
+                                        obras_encontradas.append(buscar_objeto_por_id(id_obra))
+                                for obra in obras_encontradas:
+                                        if obra is not None:
+                                                obra.show()
+                                continuar = valid_continue("Hay mas obras disponibles, ¿desea seguir viendo? (y/n):")
+                                if continuar=='y':
+                                        limite_sup += 10
+                                elif continuar == "n":
+                                        break
+                else:
+                        print(f"OBRAS DEL ARTISTA: {nombre_artista}")
+                        for id_obra in id_obras:
+                                obras_encontradas.append(buscar_objeto_por_id(id_obra))
+                        for obra in obras_encontradas:
+                                if obra is not None:
+                                        obra.show()
+        else:
+                print("No existen obras para el autor ingresado.")
                 return None
         return obras_encontradas
