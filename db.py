@@ -14,17 +14,21 @@ def cargar_departamentos():
                 departamentos.append(Departamento(departamento['departmentId'], departamento['displayName']))
         return departamentos
 
+#Obtiene los ID de los departamentos 
 def obtener_id_departamento(id_departamento):
 
         url= (f"https://collectionapi.metmuseum.org/public/collection/v1/search?departmentId={id_departamento}&q=a")
-        try:
-                response=requests.get(url)
-                response.raise_for_status()
+        response=requests.get(url)
+        if response.status_code==200:
                 data=response.json()
                 return data.get(("objectIDs"),[])
-        except requests.exceptions.RequestException as e:
-                print(f"Error al obtener IDs de objectos por departamento: {e}")
-        return[]
+        else:
+                print("Error", response.status_code)   
+                return[]
+        
+        # except requests.exceptions.RequestException as e:
+        #         print(f"Error al obtener IDs de objectos por departamento: {e}")
+        # return[]
 
 def obtener_detalles_obras(obj_id):
         url= f"https://collectionapi.metmuseum.org/public/collection/v1/objects/{obj_id}"
