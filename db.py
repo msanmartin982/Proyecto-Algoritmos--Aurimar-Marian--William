@@ -25,10 +25,7 @@ def obtener_id_departamento(id_departamento):
         else:
                 print("Error", response.status_code)   
                 return[]
-        
-        # except requests.exceptions.RequestException as e:
-        #         print(f"Error al obtener IDs de objectos por departamento: {e}")
-        # return[]
+
 
 def obtener_detalles_obras(obj_id):
         url= f"https://collectionapi.metmuseum.org/public/collection/v1/objects/{obj_id}"
