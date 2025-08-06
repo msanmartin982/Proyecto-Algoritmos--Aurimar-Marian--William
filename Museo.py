@@ -1,9 +1,11 @@
 from db import *
+from Imagen import Imagen
 
 class Museo:
     def __init__(self):
         self.departamentos = cargar_departamentos()
         self.nacionalidades = cargar_nacionalidades()
+        self.imagen = Imagen()
         self.obras = []
 
     def start(self):
@@ -21,7 +23,8 @@ Selecciona una opcion:
                             
 ------------> ''')
             
-            if opcion=="1":
+            if opcion == "1":
+
                 while True:
                     menu= input("""
                 Ingresa la opcion que deseas:
@@ -43,8 +46,9 @@ Selecciona una opcion:
                 
                     elif menu == "4":
                         break
+
             elif opcion == "2":
-                pass
+                self.mostrar_detalles_obras()
             elif opcion == "3":
                 print("Hasta luego!")
                 break
@@ -52,7 +56,8 @@ Selecciona una opcion:
                 print(f'Opcion invalida, por favor ingresa una de las opciones disponibles: ')
                 break
                 
-    #Se guarda las obra revisando que no se guarde duplicada         
+
+    # Se guarda las obra revisando que no se guarde duplicada         
     def guardar_obra(self, obra_a_guardar):
         for obra in self.obras:
             if obra_a_guardar.id == obra.id:
@@ -60,7 +65,8 @@ Selecciona una opcion:
             else:
                 self.obras.append(obra_a_guardar)
 
-    #Iniciamos el desarrollo de la opcion de obtener los departamentos
+
+    # Iniciamos el desarrollo de la opcion de obtener los departamentos
     def obtener_departamentos(self):
         self.departamentos = cargar_departamentos()
 
@@ -94,14 +100,14 @@ Selecciona una opcion:
             except ValueError:
                 print("Ingresa un numero")
 
-    #Mostrar contenido de departamento
+    # Mostrar contenido de departamento
     def mostrar_obras_departamento(self,depart_obj):
         id_objetos=obtener_id_departamento(depart_obj.id)
         if not id_objetos:
             print("No se encontraron obras")
             return
 
-#Proceso de control de cantidad de obras a mostrar por departamento, estableceremos grupos de 10 en 10
+# Proceso de control de cantidad de obras a mostrar por departamento, estableceremos grupos de 10 en 10
         total_obras=len(id_objetos)
         numero=0
         cantidad=10
@@ -130,9 +136,8 @@ Selecciona una opcion:
                 print("Todas las obras de este departamento han sido mostradas")
                 break
 
-
                 
-    #Muestra obras segun su nacionalidad
+    # Muestra obras segun su nacionalidad
     def mostrar_obras_nacionalidad(self):
         while True:
             i = 1
@@ -155,7 +160,8 @@ Selecciona una opcion:
                     print("Ingrese una nacionalidad válida.")
             break
 
-    #Muestra obras segun el nombre del autor
+
+    # Muestra obras segun el nombre del autor
     def mostrar_obras_autor(self):
         autor_a_buscar = input("Ingrese el nombre del autor de las obras que desea ver: ")
         obras = buscar_obra_nombre_artista(autor_a_buscar)
@@ -163,3 +169,34 @@ Selecciona una opcion:
                 for obra in obras:
                     self.guardar_obra(obra)
 
+
+    # Muestra los detalles de las obras segun el ID
+    def mostrar_detalles_obras(self):
+        while True:
+            try:
+                seleccion_id_objeto = int(input("Ingresa el ID de la obra para ver sus detalles o ingresa '000' para salir: "))
+                if seleccion_id_objeto == 000:
+                    return
+                break
+
+            except ValueError:
+                print("Opcion Invalida. Ingresa un numero: ")
+
+        obra = obtener_detalles_obras(seleccion_id_objeto)
+
+        if obra:
+            print()
+            print("Detalles de la Obra: ")
+            print()
+            obra.show()
+
+            if obra.imagen:
+                ver_imagen = input("¿Desea ver la imagen de la obra? Si deseas verla ingresa 'si', de lo contrario ingresa 'no': ").lower()
+                if ver_imagen == 'si':
+                    self.imagen.mostrar_imagen_obra(obra.imagen, f"obra_{obra.id}")
+                
+                else: 
+                    print("No hay una imagen disponible para esta obra. ")
+
+            else:
+                print(f"No se pudo encontrar la imagen de la obra con ID '{seleccion_id_objeto}' o hubo un error al obtener los detalles de la obra. ")

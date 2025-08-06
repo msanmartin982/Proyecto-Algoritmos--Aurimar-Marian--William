@@ -2,6 +2,7 @@ from PIL import Image
 import requests
 
 class Imagen:
+# Mostrar imagen de la obra
     def mostrar_imagen_obra(self, url, nombre_archivo):
         try:
             response = requests.get(url, stream = True)
@@ -26,7 +27,9 @@ class Imagen:
 
             imagen = Image.open(nombre_archivo_final)
             imagen.show()
+            print()
             print("Cierre la ventana de la imagen para continuar")
+            print()
 
         except requests.exceptions.RequestException as e:
             print(f"Error al descargar la imagen: {e}")
@@ -37,4 +40,3 @@ class Imagen:
         except Exception as e:
             print(f"Ocurrió un error inesperado al mostrar la imagen: {e}")
         return nombre_archivo_final
-    

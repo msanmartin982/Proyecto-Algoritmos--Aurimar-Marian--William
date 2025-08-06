@@ -4,7 +4,7 @@ from Nacionalidad import Nacionalidad
 from Obra import Obra, Detalles
 from utils import *
 
-#Carga los departamentos en el sistema
+# Carga los departamentos en el sistema
 def cargar_departamentos():
         departamentos = []
         url = "https://collectionapi.metmuseum.org/public/collection/v1/departments"
@@ -14,7 +14,7 @@ def cargar_departamentos():
                 departamentos.append(Departamento(departamento['departmentId'], departamento['displayName']))
         return departamentos
 
-#Obtiene los ID de los departamentos 
+# Obtiene los ID de los departamentos 
 def obtener_id_departamento(id_departamento):
         url= (f"https://collectionapi.metmuseum.org/public/collection/v1/search?departmentId={id_departamento}&q=a")
         response=requests.get(url)
@@ -25,16 +25,6 @@ def obtener_id_departamento(id_departamento):
                 print("Error", response.status_code)   
                 return[]
 
-#Obtiene detalles de las obras
-def obtener_detalles_obras(obj_id):
-        url= f"https://collectionapi.metmuseum.org/public/collection/v1/objects/{obj_id}"
-        response=requests.get(url)
-        if response.status_code==200:
-                data=response.json()
-                obras=Detalles(id=data.get("objectID"),titulo=data.get("title"),autor=data.get("artistDisplayName"),nacionalidad=data.get("artistNationality"),nacimiento=data.get("artistBeginDate"),muerte=data.get("artistEndDate"),tipo=data.get("classification"),creacion=data.get("objectDate"),imagen=data.get("primaryImage"))
-                return obras
-        else:
-                print("Error", response.status_code)
 
 # Carga las nacionalidades en el sistema
 def cargar_nacionalidades():
@@ -64,7 +54,7 @@ def buscar_obra_nacionalidad(nacionalidad):
         obras_encontradas = []
         if id_obras is not None:
 
-                #Intento evitar que la API deje de responder haciendo requests de 10 en 10, igual si se hace muy rapido puede colapsar.
+                # Intento evitar que la API deje de responder haciendo requests de 10 en 10, igual si se hace muy rapido puede colapsar.
                 if len(id_obras) > 10:
                         limite_sup = 10
                         limite_inf = limite_sup - 10
@@ -92,6 +82,7 @@ def buscar_obra_nacionalidad(nacionalidad):
                 return None
         return obras_encontradas
 
+
 # Busca obra segun su nacionalidad
 def buscar_obra_nombre_artista(nombre_artista):
         url = f"https://collectionapi.metmuseum.org/public/collection/v1/search?artistOrCulture=true&q={nombre_artista}"
@@ -101,7 +92,7 @@ def buscar_obra_nombre_artista(nombre_artista):
 
         obras_encontradas = []
         if id_obras is not None:
-                #Intento evitar que la API deje de responder haciendo requests de 10 en 10, igual si se hace muy rapido puede colapsar.
+                # Intento evitar que la API deje de responder haciendo requests de 10 en 10, igual si se hace muy rapido puede colapsar.
                 if len(id_obras) > 10:
                         limite_sup = 10
                         limite_inf = limite_sup - 10
@@ -128,3 +119,15 @@ def buscar_obra_nombre_artista(nombre_artista):
                 print("No existen obras para el autor ingresado.")
                 return None
         return obras_encontradas
+
+
+# Obtiene detalles de las obras
+def obtener_detalles_obras(obj_id):
+        url = f"https://collectionapi.metmuseum.org/public/collection/v1/objects/{obj_id}"
+        response = requests.get(url)
+        if response.status_code == 200:
+                data = response.json()
+                obra = Detalles(id=data.get("objectID"),titulo=data.get("title"),nombre_autor=data.get("artistDisplayName"),nacionalidad=data.get("artistNationality"),fecha_nacimiento=data.get("artistBeginDate"),fecha_muerte=data.get("artistEndDate"),clasificacion=data.get("classification"),año_creacion=data.get("objectDate"),imagen=data.get("primaryImage"))
+                return obra
+        else:
+                print("Error", response.status_code)
