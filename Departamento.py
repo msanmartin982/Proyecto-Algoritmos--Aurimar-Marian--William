@@ -6,5 +6,5 @@ class Departamento:
         def show(self):
                 print(f"{self.id} - {self.nombre_departamento}\n")
 
-
+        
 

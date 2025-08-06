@@ -1,21 +1,21 @@
-class Obras:
+class Obra:
     def __init__(self, id, titulo, nombre_autor):
         self.id = id
         self.titulo = titulo
         self.nombre_autor = nombre_autor
 
     def show(self):
-        print(f"ID de la Obra: {self.id}")
+        print(f"\nID de la Obra: {self.id}")
         print(f"Titulo de la Obra: {self.titulo}")
         print(f"Nombre del Autor de la Obra: {self.nombre_autor}")
 
 
-class Detalles(Obras):
+class Detalles(Obra):
     def __init__(self, id, titulo, nombre_autor, nacionalidad, fecha_nacimiento, fecha_muerte, clasificacion, año_creacion, imagen):
         super().__init__(id, titulo, nombre_autor)
         self.nacionalidad = nacionalidad   
         self.fecha_nacimiento = fecha_nacimiento   
-        self.fecha_muerte = fecha_nacimiento   
+        self.fecha_muerte = fecha_muerte  
         self.clasificacion = clasificacion
         self.año_creacion = año_creacion
         self.imagen = imagen

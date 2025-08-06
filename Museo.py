@@ -2,13 +2,12 @@ from db import *
 
 class Museo:
     def __init__(self):
-        self.departamentos = []
+        self.departamentos = cargar_departamentos()
+        self.nacionalidades = cargar_nacionalidades()
+        self.obras = []
 
     def start(self):
-        self.departamentos = cargar_departamentos()
-        print(self.departamentos)
-
-
+        
         while True:
             
             opcion=input('''
@@ -19,7 +18,7 @@ Selecciona una opcion
 1-Busqueda de obras
 2-Mostrar detalles de obras por ID conocido
 3-Salir
-                              
+                            
 ------------> ''')
             
             if opcion=="1":
@@ -37,22 +36,30 @@ Selecciona una opcion
                         pass
                     
                     elif menu == "2":
-                        pass
+                        self.mostrar_obras_nacionalidad()
                 
                     elif menu == "3":
                         pass
                 
                     elif menu == "4":
                         break
-                
+            elif opcion == "2":
+                pass
+            elif opcion == "3":
+                print("Hasta luego!")
             else:
                 print(f'Opcion invalida, por favor ingresa una de las opciones disponibles')
                 break
                 
+    #Se guarda las obra revisando que no se guarde duplicada         
+    def guardar_obra(self, obra_a_guardar):
+        for obra in self.obras:
+            if obra_a_guardar.id == obra.id:
+                pass
+            else:
+                self.obras.append(obra_a_guardar)
 
-            
-
-#Iniciamos el desarrollo de la opcion de obtener los departamentos
+    #Iniciamos el desarrollo de la opcion de obtener los departamentos
     def obtener_departamentos(self):
         self.departamentos = cargar_departamentos()
 
@@ -98,4 +105,26 @@ Selecciona una opcion
             
             else:
                 print("No se pudieron obtener las obras")
-
+                
+    #Muestra obras segun su nacionalidad
+    def mostrar_obras_nacionalidad(self):
+        while True:
+            i = 1
+            for nacionalidad in self.nacionalidades:
+                print(f"{i} - {nacionalidad.nombre}")
+                i += 1
+            while True:
+                nacionalidad_a_buscar = input("Ingrese la nacionalidad de las obras que desea ver: ")
+                encontrada = False
+                for nacionalidad in self.nacionalidades:
+                    if nacionalidad_a_buscar == nacionalidad.nombre:
+                        encontrada = True
+                if encontrada == True:
+                    obras = buscar_obra_nacionalidad(nacionalidad_a_buscar)
+                    if obras is not None:
+                        for obra in obras:
+                            self.guardar_obra(obra)
+                    break
+                else:
+                    print("Ingrese una nacionalidad válida.")
+            break
