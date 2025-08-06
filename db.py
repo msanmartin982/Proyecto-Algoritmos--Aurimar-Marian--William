@@ -16,7 +16,6 @@ def cargar_departamentos():
 
 #Obtiene los ID de los departamentos 
 def obtener_id_departamento(id_departamento):
-
         url= (f"https://collectionapi.metmuseum.org/public/collection/v1/search?departmentId={id_departamento}&q=a")
         response=requests.get(url)
         if response.status_code==200:
