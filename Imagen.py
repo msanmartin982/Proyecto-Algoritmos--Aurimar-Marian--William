@@ -24,6 +24,10 @@ class Imagen:
                     archivo.write(chunk)
             print(f"Imagen guardada temporalmente como '{nombre_archivo_final}'")
 
+            imagen = Image.open(nombre_archivo_final)
+            imagen.show()
+            print("Cierre la ventana de la imagen para continuar")
+
         except requests.exceptions.RequestException as e:
             print(f"Error al descargar la imagen: {e}")
         
@@ -34,7 +38,3 @@ class Imagen:
             print(f"Ocurrió un error inesperado al mostrar la imagen: {e}")
         return nombre_archivo_final
     
-    # nombre_archivo_destino = 
-    # imagen = Image.open(nombre_archivo_final)
-    # imagen.show()
-    # print("Cierre la ventana de la imagen para continuar")

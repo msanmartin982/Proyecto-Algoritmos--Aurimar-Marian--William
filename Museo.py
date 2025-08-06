@@ -11,10 +11,10 @@ class Museo:
         while True:
             
             opcion=input('''
-        Bienvenido al catalogo 
+        Bienvenido al Catálogo 
                 de Arte 
 -----------del Museo MetroArt---------------                         
-Selecciona una opcion                        
+Selecciona una opcion:                        
 1-Busqueda de obras
 2-Mostrar detalles de obras por ID conocido
 3-Salir
@@ -25,9 +25,9 @@ Selecciona una opcion
                 while True:
                     menu= input("""
                 Ingresa la opcion que deseas:
-                1-Ver lista de obras por departamento
-                2-Ver lista de obras por nacionalidad de Autor
-                3-ver lista de obras por nombre de autor
+                1-Ver lista de obras por Departamento
+                2-Ver lista de obras por Nacionalidad de Autor
+                3-Ver lista de obras por Nombre de Autor
                 4-Volver al menu inicial
                 ----> """)
             
@@ -49,7 +49,7 @@ Selecciona una opcion
                 print("Hasta luego!")
                 break
             else:
-                print(f'Opcion invalida, por favor ingresa una de las opciones disponibles')
+                print(f'Opcion invalida, por favor ingresa una de las opciones disponibles: ')
                 break
                 
     #Se guarda las obra revisando que no se guarde duplicada         
@@ -75,7 +75,7 @@ Selecciona una opcion
         
         while True:
             try:
-                seleccion_id=int(input("Ingreesa el ID del departamento que deseas ver o ingresa '000' para salir: "))
+                seleccion_id=int(input("Ingresa el ID del departamento que deseas ver o ingresa '000' para salir: "))
                 if seleccion_id==000:
                     return
                 
@@ -94,7 +94,7 @@ Selecciona una opcion
             except ValueError:
                 print("Ingresa un numero")
 
-#    Mostrar contenido de departamento
+    #Mostrar contenido de departamento
     def mostrar_obras_departamento(self,depart_obj):
         id_objetos=obtener_id_departamento(depart_obj.id)
         if not id_objetos:
