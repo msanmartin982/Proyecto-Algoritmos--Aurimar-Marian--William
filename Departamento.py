@@ -4,7 +4,5 @@ class Departamento:
                 self.nombre_departamento = nombre_departamento
 
         def show(self):
-                print(f"{self.id} - {self.nombre_departamento}\n")
-
-        
-
+                print(f"ID de Departamento: {self.id}")
+                print(f"Nombre de Departamento: {self.nombre_departamento}")
