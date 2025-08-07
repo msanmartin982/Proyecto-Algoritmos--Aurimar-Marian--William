@@ -1,8 +1,25 @@
+'''
+Esta es una de las clases que realizamos con mayor relevancia, ya que permite establecer
+las caracteristicas de nuestra obra, en donde mostraremos los detalles que son requeridos,
+esta clase es importada a db, en donde se obtiene la informacion correspondiente de
+cada obra
+'''
 class Obra:
+    '''
+    Representa la obra de arte de forma basica
+    '''
+
+    '''
+    Inicializa el objeto Obra
+    '''
     def __init__(self, id, titulo, nombre_autor):
         self.id = id
         self.titulo = titulo
         self.nombre_autor = nombre_autor
+
+    '''
+    Muestra los atributos deseados; ID, titulo y autor
+    '''
 
     def show(self):
         print(f"\nID de la Obra: {self.id}")
@@ -11,6 +28,14 @@ class Obra:
 
 
 class Detalles(Obra):
+    '''
+    Representa los Detalles de las Obras, por lo tanto, es una herencia
+    '''
+
+    '''
+    Inicializa el objeto Detalles con la herencia de los atributos establecidos anteriormente en Obra, sumando otros
+    atributos relevantes 
+    '''
     def __init__(self, id, titulo, nombre_autor, nacionalidad, fecha_nacimiento, fecha_muerte, clasificacion, año_creacion, imagen):
         super().__init__(id, titulo, nombre_autor)
         self.nacionalidad = nacionalidad   
@@ -20,6 +45,9 @@ class Detalles(Obra):
         self.año_creacion = año_creacion
         self.imagen = imagen
 
+    '''
+    Muestra los atributos heredados y agregados como nacionalidad, nacimiento, muerte, entre otros
+    '''
     def show(self):
         super().show()
         print(f"Nacionalidad del Autor: {self.nacionalidad}")
