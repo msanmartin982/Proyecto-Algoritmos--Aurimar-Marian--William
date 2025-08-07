@@ -1,6 +1,12 @@
+'''
+Importamos todo el archivo db, que es nuestra base de datos, e importamos el archivo que nos va a permitir ver las imagenes.
+'''
 from db import *
 from Imagen import Imagen
 
+'''
+Esta clase hara funcionar todo nuestro catalogo del Museo de Arte. Es la ejecucion de nuestro sistema.
+'''
 class Museo:
     def __init__(self):
         self.departamentos = cargar_departamentos()
@@ -15,7 +21,8 @@ class Museo:
             opcion=input('''
         Bienvenido al Catálogo 
                 de Arte 
------------del Museo MetroArt---------------                         
+-----------del Museo MetroArt---------------
+                                                  
 Selecciona una opcion:                        
 1-Busqueda de obras
 2-Mostrar detalles de obras por ID conocido
@@ -36,7 +43,6 @@ Selecciona una opcion:
             
                     if menu== "1":
                         self.obtener_departamentos()
-                        pass
                     
                     elif menu == "2":
                         self.mostrar_obras_nacionalidad()
@@ -49,15 +55,19 @@ Selecciona una opcion:
 
             elif opcion == "2":
                 self.mostrar_detalles_obras()
+
             elif opcion == "3":
+                print()
                 print("Hasta luego!")
                 break
+
             else:
                 print(f'Opcion invalida, por favor ingresa una de las opciones disponibles: ')
                 break
                 
-
-    # Se guarda las obra revisando que no se guarde duplicada         
+    '''
+    Se guarda las obra revisando que no se guarde duplicada
+    '''         
     def guardar_obra(self, obra_a_guardar):
         for obra in self.obras:
             if obra_a_guardar.id == obra.id:

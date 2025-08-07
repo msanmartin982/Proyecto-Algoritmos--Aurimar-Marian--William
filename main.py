@@ -1,6 +1,6 @@
 '''
 Realizamos la importacion de Museo, donde se ha realizado la construccion principal del funcionamiento
-de nuestro catalogo, y a su vez, donde fueron importados todos nuestros archivos
+de nuestro catalogo, y a su vez, donde fueron importados todos nuestros archivos.
 '''
 
 from Museo import Museo

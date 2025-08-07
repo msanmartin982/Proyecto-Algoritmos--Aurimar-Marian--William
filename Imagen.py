@@ -1,18 +1,18 @@
 '''
-Importamos las librerias que se permitieron utilizar en el proyecto, que son PILLOW y REQUESTS
+Importamos las librerias que se permitieron utilizar en el proyecto, que son PILLOW y REQUESTS.
 '''
 from PIL import Image
 import requests
+
 '''
-Esta clase sera importada en db, ya que es el pilar fundamental, por no decir unico y esencial
-que nos permitira realizar la muestra de las obras como una imagen, cuando se solicite la opcion numero 2 y el
-usuario desee visualizar de que tipo de obra se estan mostrando los detalles. Usualmente tenemos cierto tipo de error
-por asi decirlo, ya que no siempre obtenemos las imagenes, porque el API no las tiene todas, por lo tanto, dice que la imagen no
-se encuentra
+Esta clase sera importada en db, ya que es el pilar fundamental, por no decir unico y esencial que nos permitira 
+realizar la muestra de las obras como una imagen, cuando se solicite la opcion numero 2 y el usuario desee visualizar 
+de que tipo de obra se estan mostrando los detalles. Usualmente tenemos cierto tipo de error por asi decirlo, ya que 
+no siempre obtenemos las imagenes, porque el API no las tiene todas, por lo tanto, dice que la imagen no se encuentra.
 '''
 class Imagen:
     '''
-    Representa la imagen de la obra
+    Representa la imagen de la obra.
     '''
 
     '''
@@ -20,7 +20,7 @@ class Imagen:
     en estado de error. Se hace un ajuste de formato y a la vez se estable el tipo de archivo que se puede abir con las diferentes
     extensiones que se establecen a continuacion. Ademas, se establece una medida estandar para la muestra de las imagenes. Y finalmente,
     un conjunto de 'except' atadas a nuestra funcion encabezada por el try, que establecen ciertas impresiones en caso de que exista
-    algun error
+    algun error.
     '''
     def mostrar_imagen_obra(self, url, nombre_archivo):
         try:
@@ -45,7 +45,7 @@ class Imagen:
             print(f"Imagen guardada temporalmente como '{nombre_archivo_final}'")
 
             '''
-            Con la siguiente variable 'imagen', procedemos a guardarla y abrirla
+            Con la siguiente variable 'imagen', procedemos a guardarla y abrirla.
             '''
 
             imagen = Image.open(nombre_archivo_final)
