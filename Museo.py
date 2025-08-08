@@ -66,7 +66,7 @@ Selecciona una opcion:
                 break
                 
     '''
-    Se guarda las obra revisando que no se guarde duplicada
+    Se guarda la obra revisando que no se guarde duplicada.
     '''         
     def guardar_obra(self, obra_a_guardar):
         for obra in self.obras:
@@ -75,8 +75,9 @@ Selecciona una opcion:
             else:
                 self.obras.append(obra_a_guardar)
 
-
-    # Iniciamos el desarrollo de la opcion de obtener los departamentos
+    '''
+    Iniciamos el desarrollo de la opcion de obtener los departamentos.
+    '''
     def obtener_departamentos(self):
         self.departamentos = cargar_departamentos()
 
@@ -110,14 +111,18 @@ Selecciona una opcion:
             except ValueError:
                 print("Ingresa un numero")
 
-    # Mostrar contenido de departamento
+    '''
+    Mostrar contenido de departamento.
+    '''
     def mostrar_obras_departamento(self,depart_obj):
         id_objetos=obtener_id_departamento(depart_obj.id)
         if not id_objetos:
             print("No se encontraron obras")
             return
 
-# Proceso de control de cantidad de obras a mostrar por departamento, estableceremos grupos de 10 en 10
+        '''
+        Proceso de control de cantidad de obras a mostrar por departamento, estableceremos grupos de 10 en 10.
+        '''
         total_obras=len(id_objetos)
         numero=0
         cantidad=10
@@ -147,7 +152,9 @@ Selecciona una opcion:
                 break
 
                 
-    # Muestra obras segun su nacionalidad
+    '''
+    Muestra obras segun su nacionalidad.
+    '''
     def mostrar_obras_nacionalidad(self):
         while True:
             i = 1
@@ -171,7 +178,9 @@ Selecciona una opcion:
             break
 
 
-    # Muestra obras segun el nombre del autor
+    '''
+    Muestra obras segun el nombre del autor.
+    '''
     def mostrar_obras_autor(self):
         autor_a_buscar = input("Ingrese el nombre del autor de las obras que desea ver: ")
         obras = buscar_obra_nombre_artista(autor_a_buscar)
@@ -180,7 +189,9 @@ Selecciona una opcion:
                     self.guardar_obra(obra)
 
 
-    # Muestra los detalles de las obras segun el ID
+    '''
+    Muestra los detalles de las obras segun el ID.
+    '''
     def mostrar_detalles_obras(self):
         while True:
             try:
