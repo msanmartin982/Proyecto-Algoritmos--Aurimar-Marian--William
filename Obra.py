@@ -8,10 +8,10 @@ class Obra:
     Representa la obra de arte de forma basica.
     '''
 
-    '''
-    Inicializa el objeto Obra.
-    '''
     def __init__(self, id, titulo, nombre_autor):
+        '''
+        Inicializacion del objeto Obra.
+        '''
         self.id = id
         self.titulo = titulo
         self.nombre_autor = nombre_autor
@@ -31,12 +31,11 @@ class Detalles(Obra):
     Representa los Detalles de las Obras, por lo tanto, es una herencia.
     '''
 
-    '''
-    Inicializa el objeto Detalles con la herencia de los atributos establecidos anteriormente en Obra, sumando otros
-    atributos relevantes. 
-    '''
     def __init__(self, id, titulo, nombre_autor, nacionalidad, fecha_nacimiento, fecha_muerte, clasificacion, año_creacion, imagen):
         super().__init__(id, titulo, nombre_autor)
+        '''
+        Incializacion del Objeto Detalles con la herencia de los atributos en Obra
+        '''
         self.nacionalidad = nacionalidad   
         self.fecha_nacimiento = fecha_nacimiento   
         self.fecha_muerte = fecha_muerte  

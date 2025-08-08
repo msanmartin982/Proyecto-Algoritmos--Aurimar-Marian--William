@@ -8,10 +8,14 @@ class Nacionalidad:
     '''
     Representa una nacionalidad para los autores.
     '''
-    '''
-    Inicializacion del objeto Nacionalidad.
-    '''
+
     def __init__(self, nombre):
+        '''
+        Inicializacion de un objeto Nacionalidad.
+
+        Args:
+            nombre(str)= nombre de la nacionalidad.
+        '''
         self.nombre = nombre
 
 

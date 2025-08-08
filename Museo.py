@@ -155,7 +155,7 @@ Selecciona una opcion:
                 print(f"{i} - {nacionalidad.nombre}")
                 i += 1
             while True:
-                nacionalidad_a_buscar = input("Ingrese la nacionalidad de las obras que desea ver: ")
+                nacionalidad_a_buscar = input("Ingrese la nacionalidad de las obras que desea ver: ").capitalize()
                 encontrada = False
                 for nacionalidad in self.nacionalidades:
                     if nacionalidad_a_buscar == nacionalidad.nombre:
