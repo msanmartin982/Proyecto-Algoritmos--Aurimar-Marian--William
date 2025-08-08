@@ -10,22 +10,22 @@ class Departamento:
         Representa un departamento con su ID y nombre del departamento.
         '''
 
-        '''
-        Inicializacion de un objeto Departamento.
-        '''
         def __init__(self, id, nombre_departamento):
                 '''
-                En base a la API, el ID esta establecido como un (int).
+                Inicializacion de un objeto Departamento.
+
+                Args: 
+                        id (int): El ID del departamento.
+                        nombre (str): El nombre del departamento.
+
+                Show: 
+                        Muestra los atributos deseados; ID y nombre del departamento.
                 '''
-                self.id = id 
-                '''
-                En base a la API, el nombre esta establecido como un (str).
-                '''                                
+                self.id = id                            
                 self.nombre_departamento = nombre_departamento
 
-        '''
-        Muestra los atributos deseados; ID y nombre del departamento.
-        '''
         def show(self):
                 print(f"ID de Departamento: {self.id}")
                 print(f"Nombre de Departamento: {self.nombre_departamento}")
+
+                
