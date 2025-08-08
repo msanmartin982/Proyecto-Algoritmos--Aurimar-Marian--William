@@ -54,3 +54,21 @@ class Detalles(Obra):
         print(f"Clasificacion de la Obra: {self.clasificacion}")
         print(f"Año de creacion de la Obra: {self.año_creacion}")
         print(f"URL de la Imagen de la Obra: {self.imagen}")
+
+
+        '''
+        NOTA IMPORTANTE... En base a la informacion que obtuvimos de nuestra Api, la caracteristica de esta establece 
+        que la informacion es del siguiente tipo:
+        
+        Los Id= (int)
+
+
+        nombre
+        nacimiento
+        muerte
+        clasificacion        ------------------Todas estas son de tipo (str)
+        creacion
+        nacionalidad
+        titulo
+        etc....
+        '''
